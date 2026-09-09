@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "public"
+
+[functions]
+  node_bundler = "esbuild"
+  directory = "netlify/functions"
+
+# Recovery for missed webhooks. Webhooks are an optimisation; this is the
+# path that guarantees the mirror converges on Shopify's truth.
+[functions.reconcile]
+  schedule = "0 */6 * * *"
